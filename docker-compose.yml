@@ -1,0 +1,20 @@
+version: '3.2'
+services:
+  hospitalapp:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        NODE_ENV: 'production'
+    image: nimmis/alpine-apache:latest
+    container_name: hospitalappfrontend
+    ports:
+      - '3000:3001'
+    environment:
+      - HOST=0.0.0.0
+      - PORT=3001
+    networks:
+      - sail
+networks:
+  sail:
+    driver: bridge
